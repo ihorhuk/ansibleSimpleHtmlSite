@@ -1,0 +1,11 @@
+---
+- hosts: webservers
+  become: yes
+  tasks:
+    - name: Copy index.html file to Nginx directory
+      ansible.builtin.copy:                # Модуль для копирования файлов
+        src: files/index.html              # Путь к файлу на вашей локальной машине
+        dest: /var/www/html/index.html     # Путь, куда файл будет скопирован на удаленном сервере
+        owner: www-data                    # Владелец файла
+        group: www-data                    # Группа файла
+        mode: '0644'                       # Права доступа к файлу
